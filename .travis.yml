@@ -3,4 +3,14 @@ services:
   -  docker
 
 script:
-  - docker build -t react-app .
+  - docker build -t dmacisso/react-example2 .
+  - docker images dmacisso/react-example2
+
+before_deploy:
+  -  docker login -u dmacisso -p Proteus01
+
+deploy:
+  provider: script
+  script: docker push dmacisso/react-example2
+on:
+  branch: master
